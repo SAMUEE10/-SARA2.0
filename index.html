@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Club Nikkan</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <img src="imagenes/logo.png" alt="Logo del Club Nikkan" class="logo">
+        <h2>Club Nikkan / 日関クラブ</h2>
+        <h3>Usuario Registrado</h3>
+        <form onsubmit="return iniciarSesion()">
+            <label for="tipo_documento">Tipo de documento</label>
+            <select id="tipo_documento" name="tipo_documento">
+                <option value="CC">CC</option>
+                <option value="TI">TI</option>
+            </select><br>
+
+            <label for="usuario">Usuario</label>
+            <input type="text" id="usuario" name="usuario"><br>
+
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" name="contrasena">
+            <p class="forgot-password">Olvidé mi contraseña</p>
+
+            <div class="roles">
+                <label class="role-label" for="estudiante">Estudiante</label>
+                <input type="checkbox" id="estudiante" name="rol" value="estudiante">
+
+                <label class="role-label" for="docente">Docente</label>
+                <input type="checkbox" id="docente" name="rol" value="docente">
+            </div>
+
+            <!-- Cambio: Mover la casilla de verificación al lado del enlace -->
+            <div class="terminos-container">
+                <input type="checkbox" id="aceptar-terminos">
+                <label for="aceptar-terminos">Acepto los <a href="#" onclick="mostrarModal(); return false;">Términos y Condiciones</a></label>
+            </div>
+
+            <button type="submit" class="submit-btn">Ingresar</button>
+            <button type="button" class="submit-btn" onclick="mostrarMensajeProximamente()">Registrarse</button>
+        </form>
+    </div>
+
+    <!-- Sección agregada para el modal de términos y condiciones -->
+    <div id="modal" class="modal">
+        <div class="modal-contenido">
+            <h2>Términos y Condiciones</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus erat non leo facilisis condimentum. Nulla eu risus eget est consectetur aliquet. Ut auctor, nulla ut bibendum molestie, urna leo facilisis magna, non vulputate elit risus nec purus.</p>
+            <p>By checking this box, you agree to our <a href="#">Terms and Conditions</a>.</p>
+            <div class="botones-aceptar-rechazar">
+                <button id="aceptar-terminos" onclick="cerrarModal(); return false;">Aceptar</button>
+                <button id="rechazar-terminos" onclick="cerrarModal(); return false;">Rechazar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección agregada para la imagen de fondo -->
+    <div class="background-images">
+        <img src="imagenes/fondo.jpg" alt="Fondo">
+    </div>
+
+    <script>
+        // Función para iniciar sesión
+        function iniciarSesion() {
+            const usuarioInput = document.getElementById('usuario').value;
+            const contraseñaInput = document.getElementById('contrasena').value;
+
+            const usuarios = {
+                "usuario1": "contraseña1",
+                "usuario2": "contraseña2",
+                "usuario3": "contraseña3"
+            };
+
+            if (usuarioInput in usuarios) {
+                if (usuarios[usuarioInput] === contraseñaInput) {
+                    // Autenticación exitosa
+                    alert('Inicio de sesión exitoso');
+                    window.location.href = 'C:/PAGINA WEB/Maestro/bienvenido.html'; // Redirige a la página de bienvenida
+                    return false; // Evita el envío del formulario
+                } else {
+                    // Contraseña incorrecta
+                    alert('Contraseña incorrecta');
+                    return false; // Evita el envío del formulario
+                }
+            } else {
+                // Usuario no encontrado
+                alert('Usuario no encontrado');
+                return false; // Evita el envío del formulario
+            }
+        }
+
+        // Resto del código JavaScript aquí
+    </script>
+</body>
+</html>
